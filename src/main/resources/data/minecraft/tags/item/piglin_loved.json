@@ -7,6 +7,10 @@
     {
       "id": "minecraft:golden_spear",
       "required": false
+    },
+    {
+      "id": "minecraft:golden_dandelion",
+      "required": false
     }
   ]
 }

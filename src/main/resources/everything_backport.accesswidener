@@ -6,3 +6,6 @@ extendable method net/minecraft/world/entity/monster/AbstractSkeleton getStepSou
 
 # Spear-wielding mobs check reach against the target hitbox, as 1.21.11 does.
 accessible method net/minecraft/world/entity/LivingEntity getHitbox ()Lnet/minecraft/world/phys/AABB;
+
+# 26.1 note block trumpets are built from the package-private instrument type.
+accessible class net/minecraft/world/level/block/state/properties/NoteBlockInstrument$Type
