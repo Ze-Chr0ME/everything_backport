@@ -3,6 +3,10 @@
     {
       "id": "minecraft:spear",
       "required": false
+    },
+    {
+      "id": "minecraft:sulfur_cube_hot",
+      "required": false
     }
   ]
 }

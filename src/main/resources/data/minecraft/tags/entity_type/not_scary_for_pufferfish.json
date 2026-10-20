@@ -7,6 +7,10 @@
     {
       "id": "minecraft:zombie_nautilus",
       "required": false
+    },
+    {
+      "id": "minecraft:sulfur_cube",
+      "required": false
     }
   ]
 }

@@ -3,6 +3,10 @@
     {
       "id": "minecraft:cherry_grove",
       "required": false
+    },
+    {
+      "id": "minecraft:sulfur_caves",
+      "required": false
     }
   ]
 }
