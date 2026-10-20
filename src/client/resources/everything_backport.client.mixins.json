@@ -3,6 +3,13 @@
 	"package": "backport.everything_backport.client.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
+		"ClientLevelMixin",
+		"ItemTransformsDeserializerMixin",
+		"ItemTransformsMixin",
+		"LightTextureMixin",
+		"ResolvedModelMixin",
+		"SheetsMixin",
+		"SkyRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

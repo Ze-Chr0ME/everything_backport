@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:warped_shelf",
+      "required": false
+    },
+    {
+      "id": "minecraft:crimson_shelf",
+      "required": false
+    }
+  ]
+}

@@ -3,6 +3,19 @@
 	"package": "backport.everything_backport.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"BaseContainerBlockEntityAccessor",
+		"CarvedPumpkinBlockMixin",
+		"ChestBlockEntityAccessor",
+		"ChestOpenersCounterMixin",
+		"ComparatorBlockMixin",
+		"CompoundContainerAccessor",
+		"ContainerOpenersCounterMixin",
+		"GroundPathNavigationMixin",
+		"LevelChunkMixin",
+		"LightningRodBlockMixin",
+		"MobEquipmentMixin",
+		"OfferFlowerGoalMixin",
+		"PoiTypesAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
