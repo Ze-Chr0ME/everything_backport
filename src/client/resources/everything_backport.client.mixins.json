@@ -3,13 +3,28 @@
 	"package": "backport.everything_backport.client.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
+		"AbstractHorseRendererMixin",
+		"AbstractZombieModelMixin",
+		"ArmedEntityRenderStateMixin",
 		"ClientLevelMixin",
+		"EquineRenderStateMixin",
+		"HumanoidMobRendererMixin",
+		"HumanoidModelMixin",
+		"ItemInHandLayerMixin",
+		"ItemInHandRendererMixin",
 		"ItemTransformsDeserializerMixin",
 		"ItemTransformsMixin",
 		"LightTextureMixin",
+		"MultiPlayerGameModeInvoker",
+		"PlayerRendererMixin",
 		"ResolvedModelMixin",
 		"SheetsMixin",
-		"SkyRendererMixin"
+		"SkyRendererMixin",
+		"SpearGameRendererMixin",
+		"SpearGuiMixin",
+		"SpearLocalPlayerMixin",
+		"SpearMinecraftMixin",
+		"UndeadHorseRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

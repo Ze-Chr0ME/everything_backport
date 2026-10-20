@@ -50,15 +50,6 @@ public final class MountsSounds {
 	public static final SoundEvent PARROT_IMITATE_PARCHED = Reg.sound("entity.parrot.imitate.parched");
 	public static final SoundEvent PARROT_IMITATE_ZOMBIE_HORSE = Reg.sound("entity.parrot.imitate.zombie_horse");
 	public static final SoundEvent PARROT_IMITATE_ZOMBIE_NAUTILUS = Reg.sound("entity.parrot.imitate.zombie_nautilus");
-	public static final SoundEvent RESIN_BREAK = Reg.sound("block.resin.break");
-	public static final SoundEvent RESIN_FALL = Reg.sound("block.resin.fall");
-	public static final SoundEvent RESIN_PLACE = Reg.sound("block.resin.place");
-	public static final SoundEvent RESIN_STEP = Reg.sound("block.resin.step");
-	public static final SoundEvent RESIN_BRICKS_BREAK = Reg.sound("block.resin_bricks.break");
-	public static final SoundEvent RESIN_BRICKS_FALL = Reg.sound("block.resin_bricks.fall");
-	public static final SoundEvent RESIN_BRICKS_HIT = Reg.sound("block.resin_bricks.hit");
-	public static final SoundEvent RESIN_BRICKS_PLACE = Reg.sound("block.resin_bricks.place");
-	public static final SoundEvent RESIN_BRICKS_STEP = Reg.sound("block.resin_bricks.step");
 	public static final Holder<SoundEvent> SPEAR_USE = Reg.soundHolder("item.spear.use");
 	public static final Holder<SoundEvent> SPEAR_HIT = Reg.soundHolder("item.spear.hit");
 	public static final Holder<SoundEvent> SPEAR_ATTACK = Reg.soundHolder("item.spear.attack");

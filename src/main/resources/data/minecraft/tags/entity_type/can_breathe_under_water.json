@@ -3,6 +3,10 @@
     {
       "id": "minecraft:copper_golem",
       "required": false
+    },
+    {
+      "id": "minecraft:nautilus",
+      "required": false
     }
   ]
 }

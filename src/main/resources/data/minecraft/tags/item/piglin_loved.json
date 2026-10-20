@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:golden_nautilus_armor",
+      "required": false
+    },
+    {
+      "id": "minecraft:golden_spear",
+      "required": false
+    }
+  ]
+}

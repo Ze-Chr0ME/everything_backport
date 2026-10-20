@@ -43,6 +43,14 @@
     {
       "id": "minecraft:creaking",
       "required": false
+    },
+    {
+      "id": "minecraft:nautilus",
+      "required": false
+    },
+    {
+      "id": "minecraft:zombie_nautilus",
+      "required": false
     }
   ]
 }

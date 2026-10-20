@@ -18,7 +18,7 @@ This is a **client + server** mod: every player needs it installed.
 | Update | Version | Status |
 |---|---|---|
 | The Copper Age | 1.21.9 | done (no mannequin yet) |
-| Mounts of Mayhem | 1.21.11 | planned |
+| Mounts of Mayhem | 1.21.11 | done |
 | Tiny Takeover | 26.1 | planned |
 | Chaos Cubed | 26.2 | planned |
 | Wilderness Bound | 26.3 | planned |
@@ -31,6 +31,10 @@ This is a **client + server** mod: every player needs it installed.
 - **World generation.** The target server runs TerraTonic (Terralith + Tectonic). New biomes are added
   alongside the existing noise settings rather than replacing them, and new structures only spawn in newly
   generated chunks.
+- **Newer formats.** Where a 1.21.11 data or asset format can't be read by 1.21.7, the ported file is adapted:
+  equipment layers 1.21.7 doesn't know (nautilus armor and saddles, the camel husk saddle) are rendered by the
+  mod from `textures/entity/equipment/<layer>/`, and the Lunge enchantment uses two small helpers
+  (`everything_backport:entity_flags`, `everything_backport:play_level_sound`) in place of fields 1.21.7 lacks.
 - **Assets.** Textures, models and sounds come from the vanilla release they belong to and remain the
   property of Mojang Studios.
 

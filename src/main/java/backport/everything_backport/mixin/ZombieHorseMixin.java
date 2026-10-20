@@ -68,7 +68,7 @@ public abstract class ZombieHorseMixin extends AbstractHorse {
 	 * @reason 1.21.11 zombie horses roll speed as well as jump strength.
 	 */
 	@Overwrite
-	protected void randomizeAttributes(RandomSource randomSource) {
+	public void randomizeAttributes(RandomSource randomSource) {
 		this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(everythingBackport$jumpStrength(randomSource::nextDouble));
 		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(everythingBackport$speed(randomSource::nextDouble));
 	}
@@ -122,7 +122,7 @@ public abstract class ZombieHorseMixin extends AbstractHorse {
 	 * @reason 1.21.11 zombie horses swim and follow red mushrooms.
 	 */
 	@Overwrite
-	protected void addBehaviourGoals() {
+	public void addBehaviourGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, itemStack -> itemStack.is(MountsTags.Items.ZOMBIE_HORSE_FOOD), false));
 	}

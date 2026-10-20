@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:pufferfish_bucket",
+      "required": false
+    },
+    {
+      "id": "minecraft:pufferfish",
+      "required": false
+    }
+  ]
+}
