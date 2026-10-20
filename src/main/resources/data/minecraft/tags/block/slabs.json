@@ -23,6 +23,14 @@
     {
       "id": "minecraft:sulfur_brick_slab",
       "required": false
+    },
+    {
+      "id": "#minecraft:wool_slabs",
+      "required": false
+    },
+    {
+      "id": "#minecraft:concrete_slabs",
+      "required": false
     }
   ]
 }

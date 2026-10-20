@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#minecraft:cauldrons",
+      "required": false
+    },
+    {
+      "id": "minecraft:hopper",
+      "required": false
+    },
+    {
+      "id": "minecraft:composter",
+      "required": false
+    }
+  ]
+}

@@ -4,6 +4,8 @@ import backport.everything_backport.chaoscubed.ChaosAttributes;
 import backport.everything_backport.chaoscubed.ChaosCubed;
 import backport.everything_backport.chaoscubed.ChaosTags;
 import backport.everything_backport.chaoscubed.entity.SulfurCube;
+import backport.everything_backport.wildernessbound.block.ShelfMushroomBlock;
+import backport.everything_backport.wildernessbound.block.StrawBedBlock;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.Direction;
@@ -108,13 +110,15 @@ public abstract class EntityBounceMixin {
 		self.setDeltaMovement(movementAfterBounce);
 	}
 
-	/** 26.2's block restitution: slime blocks bounce fully, beds three quarters. */
+	/** 26.3's block restitution: slime blocks bounce fully, beds and shelf mushrooms three quarters, straw beds not at all. */
 	@Unique
 	private static double blockBounciness(BlockState state) {
 		if (state.is(Blocks.SLIME_BLOCK)) {
 			return 1.0;
+		} else if (state.getBlock() instanceof ShelfMushroomBlock) {
+			return ShelfMushroomBlock.BOUNCE_RESTITUTION;
 		} else {
-			return state.getBlock() instanceof BedBlock ? 0.75 : 0.0;
+			return state.getBlock() instanceof BedBlock && !(state.getBlock() instanceof StrawBedBlock) ? 0.75 : 0.0;
 		}
 	}
 

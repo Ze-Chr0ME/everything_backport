@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#minecraft:wool_slabs",
+      "required": false
+    },
+    {
+      "id": "#minecraft:wool_stairs",
+      "required": false
+    }
+  ]
+}
