@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:moving_piston",
+      "required": false
+    },
+    {
+      "id": "#minecraft:fence_gates",
+      "required": false
+    }
+  ]
+}

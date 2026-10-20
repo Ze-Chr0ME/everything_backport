@@ -19,7 +19,7 @@ This is a **client + server** mod: every player needs it installed.
 |---|---|---|
 | The Copper Age | 1.21.9 | done (no mannequin yet) |
 | Mounts of Mayhem | 1.21.11 | done |
-| Tiny Takeover | 26.1 | planned |
+| Tiny Takeover | 26.1 | done |
 | Chaos Cubed | 26.2 | planned |
 | Wilderness Bound | 26.3 | planned |
 
@@ -35,6 +35,9 @@ This is a **client + server** mod: every player needs it installed.
   equipment layers 1.21.7 doesn't know (nautilus armor and saddles, the camel husk saddle) are rendered by the
   mod from `textures/entity/equipment/<layer>/`, and the Lunge enchantment uses two small helpers
   (`everything_backport:entity_flags`, `everything_backport:play_level_sound`) in place of fields 1.21.7 lacks.
+- **Babies.** 26.1's redesigned baby models replace the scaled-down adults 1.21.7 bakes for its baby model layers.
+  As in 26.1, baby zombies and piglins only show armor made of vanilla materials (it uses the `humanoid_baby`
+  textures) and never show trims.
 - **Assets.** Textures, models and sounds come from the vanilla release they belong to and remain the
   property of Mojang Studios.
 
