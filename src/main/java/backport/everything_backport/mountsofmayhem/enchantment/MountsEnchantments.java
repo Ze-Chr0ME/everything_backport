@@ -41,6 +41,7 @@ public final class MountsEnchantments {
 	}
 
 	public static void init() {
+		EntityFlagsCondition.init();
 		registerEntityEffect(EverythingBackport.vanilla("apply_impulse"), ApplyEntityImpulse.CODEC);
 		registerEntityEffect(EverythingBackport.vanilla("apply_exhaustion"), ApplyExhaustion.CODEC);
 		registerEntityEffect(EverythingBackport.id("play_level_sound"), PlayLevelSoundEffect.CODEC);
