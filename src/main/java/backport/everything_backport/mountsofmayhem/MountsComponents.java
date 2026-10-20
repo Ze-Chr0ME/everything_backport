@@ -6,7 +6,9 @@ import backport.everything_backport.mountsofmayhem.component.KineticWeapon;
 import backport.everything_backport.mountsofmayhem.component.PiercingWeapon;
 import backport.everything_backport.mountsofmayhem.component.SwingAnimation;
 import backport.everything_backport.mountsofmayhem.component.UseEffects;
+import backport.everything_backport.mountsofmayhem.entity.ZombieNautilusVariant;
 import java.util.function.UnaryOperator;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -39,6 +41,9 @@ public final class MountsComponents {
 	);
 	public static final DataComponentType<SwingAnimation> SWING_ANIMATION = register(
 		"swing_animation", builder -> builder.persistent(SwingAnimation.CODEC).networkSynchronized(SwingAnimation.STREAM_CODEC)
+	);
+	public static final DataComponentType<Holder<ZombieNautilusVariant>> ZOMBIE_NAUTILUS_VARIANT = register(
+		"zombie_nautilus/variant", builder -> builder.persistent(ZombieNautilusVariant.CODEC).networkSynchronized(ZombieNautilusVariant.STREAM_CODEC)
 	);
 
 	private MountsComponents() {

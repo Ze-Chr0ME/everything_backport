@@ -1,6 +1,8 @@
 package backport.everything_backport.mountsofmayhem.entity;
 
 import backport.everything_backport.mountsofmayhem.MountsComponents;
+import backport.everything_backport.mountsofmayhem.Undead;
+import backport.everything_backport.mountsofmayhem.Undead;
 import backport.everything_backport.mountsofmayhem.MountsEntities;
 import backport.everything_backport.mountsofmayhem.MountsMemories;
 import backport.everything_backport.mountsofmayhem.MountsRegistries;
@@ -38,7 +40,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class ZombieNautilus extends AbstractNautilus {
 	private static final EntityDataAccessor<Holder<ZombieNautilusVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(
@@ -59,8 +61,9 @@ public class ZombieNautilus extends AbstractNautilus {
 	}
 
 	@Override
-	protected EquipmentSlot sunProtectionSlot() {
-		return EquipmentSlot.BODY;
+	public void aiStep() {
+		super.aiStep();
+		Undead.burnInDaylight(this, EquipmentSlot.BODY);
 	}
 
 	@Override
@@ -155,7 +158,7 @@ public class ZombieNautilus extends AbstractNautilus {
 	@Override
 	public <T> T get(DataComponentType<? extends T> dataComponentType) {
 		return dataComponentType == MountsComponents.ZOMBIE_NAUTILUS_VARIANT
-			? castComponentValue((DataComponentType<T>)dataComponentType, new EitherHolder<>(this.getVariant()))
+			? castComponentValue((DataComponentType<T>)dataComponentType, this.getVariant())
 			: super.get(dataComponentType);
 	}
 
@@ -168,13 +171,8 @@ public class ZombieNautilus extends AbstractNautilus {
 	@Override
 	protected <T> boolean applyImplicitComponent(DataComponentType<T> dataComponentType, T object) {
 		if (dataComponentType == MountsComponents.ZOMBIE_NAUTILUS_VARIANT) {
-			Optional<Holder<ZombieNautilusVariant>> optional = castComponentValue(MountsComponents.ZOMBIE_NAUTILUS_VARIANT, object).unwrap(this.registryAccess());
-			if (optional.isPresent()) {
-				this.setVariant((Holder<ZombieNautilusVariant>)optional.get());
-				return true;
-			} else {
-				return false;
-			}
+			this.setVariant(castComponentValue(MountsComponents.ZOMBIE_NAUTILUS_VARIANT, object));
+			return true;
 		} else {
 			return super.applyImplicitComponent(dataComponentType, object);
 		}

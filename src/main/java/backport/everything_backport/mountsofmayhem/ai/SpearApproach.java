@@ -1,5 +1,6 @@
 package backport.everything_backport.mountsofmayhem.ai;
 
+import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import backport.everything_backport.mountsofmayhem.MountsComponents;
 import backport.everything_backport.mountsofmayhem.MountsMemories;
 import backport.everything_backport.mountsofmayhem.component.KineticWeapon;
@@ -12,7 +13,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 
 public class SpearApproach extends Behavior<PathfinderMob> {

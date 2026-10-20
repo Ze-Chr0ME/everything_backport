@@ -93,10 +93,12 @@ public abstract class ZombieHorseMixin extends AbstractHorse {
 
 	/**
 	 * @author Everything Backport
-	 * @reason 1.21.11 zombie horses are tamed and fed like other horses.
+	 * @reason 1.21.11 zombie horses are tamed and fed like other horses. They also become persistent once interacted with,
+	 * which 1.21.11 does in Mob#interact (final in 1.21.7).
 	 */
 	@Overwrite
 	public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+		this.setPersistenceRequired();
 		boolean openInventory = !this.isBaby() && this.isTamed() && player.isSecondaryUseActive();
 		if (!this.isVehicle() && !openInventory) {
 			ItemStack itemStack = player.getItemInHand(interactionHand);
@@ -123,12 +125,6 @@ public abstract class ZombieHorseMixin extends AbstractHorse {
 	protected void addBehaviourGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, itemStack -> itemStack.is(MountsTags.Items.ZOMBIE_HORSE_FOOD), false));
-	}
-
-	@Override
-	public InteractionResult interact(Player player, InteractionHand interactionHand) {
-		this.setPersistenceRequired();
-		return super.interact(player, interactionHand);
 	}
 
 	@Override

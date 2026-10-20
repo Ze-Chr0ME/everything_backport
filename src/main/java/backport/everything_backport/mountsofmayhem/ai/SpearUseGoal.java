@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.phys.Vec3;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 public class SpearUseGoal<T extends Monster> extends Goal {
@@ -98,7 +98,7 @@ public class SpearUseGoal<T extends Monster> extends Goal {
 			if (this.state.tickAndCheckEngagement()) {
 				this.mob.stopUsingItem();
 				double e = Math.sqrt(d);
-				this.state.awayPos = LandRandomPos.getPosAway(this.mob, Math.max(0.0, 9 + i - e), Math.max(1.0, 11 + i - e), 7, livingEntity.position());
+				this.state.awayPos = MountsRandomPos.getPosAway(this.mob, Math.max(0.0, 9 + i - e), Math.max(1.0, 11 + i - e), 7, livingEntity.position());
 				this.state.fleeingTime = 1;
 			}
 
@@ -117,7 +117,7 @@ public class SpearUseGoal<T extends Monster> extends Goal {
 					this.mob.getNavigation().moveTo(livingEntity, f * this.speedModifierWhenCharging);
 					if (d < this.targetInRangeRadiusSq || this.mob.getNavigation().isDone()) {
 						double e = Math.sqrt(d);
-						this.state.awayPos = LandRandomPos.getPosAway(this.mob, 6 + i - e, 7 + i - e, 7, livingEntity.position());
+						this.state.awayPos = MountsRandomPos.getPosAway(this.mob, 6 + i - e, 7 + i - e, 7, livingEntity.position());
 					}
 				}
 			}

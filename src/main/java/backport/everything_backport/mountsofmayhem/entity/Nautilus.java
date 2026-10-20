@@ -18,7 +18,7 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.level.Level;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class Nautilus extends AbstractNautilus {
 	private static final int NAUTILUS_TOTAL_AIR_SUPPLY = 300;

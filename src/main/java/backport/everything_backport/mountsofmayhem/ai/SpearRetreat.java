@@ -1,5 +1,6 @@
 package backport.everything_backport.mountsofmayhem.ai;
 
+import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import backport.everything_backport.mountsofmayhem.MountsComponents;
 import backport.everything_backport.mountsofmayhem.MountsMemories;
 import backport.everything_backport.mountsofmayhem.component.KineticWeapon;
@@ -13,7 +14,7 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.phys.Vec3;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 
 public class SpearRetreat extends Behavior<PathfinderMob> {
@@ -45,7 +46,7 @@ public class SpearRetreat extends Behavior<PathfinderMob> {
 				double d = pathfinderMob.distanceToSqr(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ());
 				int i = pathfinderMob.isPassenger() ? 2 : 0;
 				double e = Math.sqrt(d);
-				Vec3 vec3 = LandRandomPos.getPosAway(pathfinderMob, Math.max(0.0, 9 + i - e), Math.max(1.0, 11 + i - e), 7, livingEntity.position());
+				Vec3 vec3 = MountsRandomPos.getPosAway(pathfinderMob, Math.max(0.0, 9 + i - e), Math.max(1.0, 11 + i - e), 7, livingEntity.position());
 				if (vec3 == null) {
 					return false;
 				} else {

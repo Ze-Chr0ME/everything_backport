@@ -1,5 +1,6 @@
 package backport.everything_backport.mountsofmayhem.entity;
 
+import net.minecraft.world.entity.ai.behavior.Behavior;
 import backport.everything_backport.mountsofmayhem.MountsComponents;
 import backport.everything_backport.mountsofmayhem.MountsEntities;
 import backport.everything_backport.mountsofmayhem.MountsMemories;

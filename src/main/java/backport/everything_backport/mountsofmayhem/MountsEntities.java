@@ -46,7 +46,7 @@ public final class MountsEntities {
 	);
 	public static final EntityType<Parched> PARCHED = Reg.entity(
 		"parched",
-		EntityType.Builder.of(Parched::new, MobCategory.MONSTER).sized(0.6F, 1.99F).eyeHeight(1.74F).ridingOffset(-0.7F).clientTrackingRange(8).notInPeaceful()
+		EntityType.Builder.of(Parched::new, MobCategory.MONSTER).sized(0.6F, 1.99F).eyeHeight(1.74F).ridingOffset(-0.7F).clientTrackingRange(8)
 	);
 
 	private MountsEntities() {
@@ -60,14 +60,13 @@ public final class MountsEntities {
 		FabricDefaultAttributeRegistry.register(PARCHED, Parched.createAttributes());
 
 		SpawnPlacements.register(NAUTILUS, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AbstractNautilus::checkNautilusSpawnRules);
-		SpawnPlacements.register(ZOMBIE_NAUTILUS, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AbstractNautilus::checkNautilusSpawnRules);
-		SpawnPlacements.register(CAMEL_HUSK, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkSurfaceMonstersSpawnRules);
-		SpawnPlacements.register(PARCHED, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkSurfaceMonstersSpawnRules);
+		SpawnPlacements.register(CAMEL_HUSK, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MountsSpawnRules::checkSurfaceMonstersSpawnRules);
+		SpawnPlacements.register(PARCHED, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MountsSpawnRules::checkSurfaceMonstersSpawnRules);
 		// 1.21.11: husks no longer need the sky to spawn, and zombie horses spawn like monsters.
 		SpawnPlacementsAccessor.everythingBackport$getDataByType().remove(EntityType.HUSK);
-		SpawnPlacements.register(EntityType.HUSK, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkSurfaceMonstersSpawnRules);
+		SpawnPlacements.register(EntityType.HUSK, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MountsSpawnRules::checkSurfaceMonstersSpawnRules);
 		SpawnPlacementsAccessor.everythingBackport$getDataByType().remove(EntityType.ZOMBIE_HORSE);
-		SpawnPlacements.register(EntityType.ZOMBIE_HORSE, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+		SpawnPlacements.register(EntityType.ZOMBIE_HORSE, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MountsSpawnRules::checkMonsterSpawnRules);
 		((EntityTypeAccessor)EntityType.ZOMBIE_HORSE).everythingBackport$setCategory(MobCategory.MONSTER);
 
 		addSpawns();

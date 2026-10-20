@@ -39,9 +39,10 @@ public class CamelHusk extends Camel implements MountedCharger {
 	}
 
 	@Override
-	public InteractionResult interact(Player player, InteractionHand interactionHand) {
+	public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+		// 1.21.11 does this in Mob#interact, which is final in 1.21.7.
 		this.setPersistenceRequired();
-		return super.interact(player, interactionHand);
+		return super.mobInteract(player, interactionHand);
 	}
 
 	@Override

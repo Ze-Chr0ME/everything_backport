@@ -207,7 +207,7 @@ public abstract class AbstractNautilus extends TamableAnimal implements HasCusto
 		yRot += delta * 0.5F;
 		this.setRot(yRot, rotation.x);
 		this.yRotO = this.yBodyRot = this.yHeadRot = yRot;
-		if (this.isControlledByLocalInstance()) {
+		if (this.isLocalInstanceAuthoritative()) {
 			if (this.playerJumpPendingScale > 0.0F && !this.isJumping()) {
 				this.executeRidersJump(this.playerJumpPendingScale, player);
 			}
@@ -239,7 +239,7 @@ public abstract class AbstractNautilus extends TamableAnimal implements HasCusto
 		if (!this.level().isClientSide()) {
 			player.startRiding(this);
 			if (!this.isVehicle()) {
-				this.clearRestriction();
+				this.clearHome();
 			}
 		}
 	}
@@ -251,10 +251,10 @@ public abstract class AbstractNautilus extends TamableAnimal implements HasCusto
 	protected void checkRestriction() {
 		if (!this.isLeashed() && !this.isVehicle() && this.isTame()) {
 			int radius = this.getNautilusRestrictionRadius();
-			if (!this.hasRestriction()
-				|| !this.getRestrictCenter().closerThan(this.blockPosition(), radius + RESTRICTION_RADIUS_BUFFER)
-				|| radius != this.getRestrictRadius()) {
-				this.restrictTo(this.blockPosition(), radius);
+			if (!this.hasHome()
+				|| !this.getHomePosition().closerThan(this.blockPosition(), radius + RESTRICTION_RADIUS_BUFFER)
+				|| radius != this.getHomeRadius()) {
+				this.setHomeTo(this.blockPosition(), radius);
 			}
 		}
 	}
@@ -405,13 +405,9 @@ public abstract class AbstractNautilus extends TamableAnimal implements HasCusto
 	}
 
 	@Override
-	public InteractionResult interact(Player player, InteractionHand interactionHand) {
-		this.setPersistenceRequired();
-		return super.interact(player, interactionHand);
-	}
-
-	@Override
 	public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+		// 1.21.11 does this in Mob#interact, which is final in 1.21.7.
+		this.setPersistenceRequired();
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		if (this.isBaby()) {
 			return super.mobInteract(player, interactionHand);

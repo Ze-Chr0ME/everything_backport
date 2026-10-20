@@ -42,7 +42,7 @@ import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.gamerules.GameRules;
+import net.minecraft.world.level.GameRules;
 
 public class NautilusAi {
 	private static final float SPEED_MULTIPLIER_WHEN_IDLING_IN_WATER = 1.0F;

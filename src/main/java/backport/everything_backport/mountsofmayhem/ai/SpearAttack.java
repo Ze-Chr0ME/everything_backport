@@ -1,5 +1,6 @@
 package backport.everything_backport.mountsofmayhem.ai;
 
+import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import backport.everything_backport.mountsofmayhem.MountsComponents;
 import backport.everything_backport.mountsofmayhem.MountsMemories;
 import backport.everything_backport.mountsofmayhem.component.KineticWeapon;
@@ -16,7 +17,7 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.phys.Vec3;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 
 public class SpearAttack extends Behavior<PathfinderMob> {
@@ -88,7 +89,7 @@ public class SpearAttack extends Behavior<PathfinderMob> {
 			pathfinderMob.getNavigation().moveTo(livingEntity, f * this.speedModifierWhenCharging);
 			if (d < this.targetInRangeRadiusSq || pathfinderMob.getNavigation().isDone()) {
 				double e = Math.sqrt(d);
-				Vec3 vec32 = LandRandomPos.getPosAway(pathfinderMob, 6 + i - e, 7 + i - e, 7, livingEntity.position());
+				Vec3 vec32 = MountsRandomPos.getPosAway(pathfinderMob, 6 + i - e, 7 + i - e, 7, livingEntity.position());
 				pathfinderMob.getBrain().setMemory(MountsMemories.SPEAR_CHARGE_POSITION, vec32);
 			}
 		}
