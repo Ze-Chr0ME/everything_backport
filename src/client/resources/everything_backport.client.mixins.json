@@ -25,6 +25,8 @@
 		"SpearLocalPlayerMixin",
 		"SpearMinecraftMixin",
 		"UndeadHorseRendererMixin",
+		"chaoscubed.EntityRendererNameTagMixin",
+		"chaoscubed.PlayerRendererBelowNameMixin",
 		"tinytakeover.AgeableMobRendererAccessor",
 		"tinytakeover.ArmadilloModelMixin",
 		"tinytakeover.AxolotlRendererMixin",

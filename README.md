@@ -20,7 +20,7 @@ This is a **client + server** mod: every player needs it installed.
 | The Copper Age | 1.21.9 | done (no mannequin yet) |
 | Mounts of Mayhem | 1.21.11 | done |
 | Tiny Takeover | 26.1 | done |
-| Chaos Cubed | 26.2 | planned |
+| Chaos Cubed | 26.2 | done (bed and sign rendering changes not ported) |
 | Wilderness Bound | 26.3 | planned |
 
 ## Design notes
@@ -35,6 +35,12 @@ This is a **client + server** mod: every player needs it installed.
   equipment layers 1.21.7 doesn't know (nautilus armor and saddles, the camel husk saddle) are rendered by the
   mod from `textures/entity/equipment/<layer>/`, and the Lunge enchantment uses two small helpers
   (`everything_backport:entity_flags`, `everything_backport:play_level_sound`) in place of fields 1.21.7 lacks.
+- **Sulfur caves.** 26.2 places sulfur caves in the overworld climate space. The mod keeps the world's own biome source and
+  noise settings (vanilla's, or Terralith's under TerraTonic): where the climate matches 26.2's sulfur caves entry, the biome
+  the source picked gives way to sulfur caves unless it is another underground biome (lush caves, dripstone caves, deep dark
+  or anything tagged `c:is_underground`), and the sulfur and cinnabar surface rule runs in front of the world's own rule.
+- **Physics attributes.** 26.2's `bounciness`, `friction_modifier` and `air_drag_modifier` attributes are added to every
+  living entity; entities without a bounciness keep 1.21.7's collision handling.
 - **Babies.** 26.1's redesigned baby models replace the scaled-down adults 1.21.7 bakes for its baby model layers.
   As in 26.1, baby zombies and piglins only show armor made of vanilla materials (it uses the `humanoid_baby`
   textures) and never show trims.
@@ -55,5 +61,6 @@ The mod jar is written to `build/libs/`.
 ./gradlew runClientGameTest
 ```
 
-Starts a client, builds a scene with the backported content, checks the copper golem sorts items, and saves screenshots
+Starts a client, builds scenes with the backported content, runs checks for each update (the copper golem sorting items,
+the age lock, sulfur cube archetypes, geysers, sulfur caves in a generated world, and more), and saves screenshots
 to `build/run/clientGameTest/screenshots`.

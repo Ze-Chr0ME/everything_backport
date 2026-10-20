@@ -1,0 +1,52 @@
+{
+  "values": [
+    {
+      "id": "#minecraft:sulfur_cube_archetype/bouncy",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/regular",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/slow_flat",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/fast_flat",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/light",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/fast_sliding",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/slow_sliding",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/sticky",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/high_resistance",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/explosive",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/hot",
+      "required": false
+    },
+    {
+      "id": "#minecraft:sulfur_cube_archetype/slow_bouncy",
+      "required": false
+    }
+  ]
+}

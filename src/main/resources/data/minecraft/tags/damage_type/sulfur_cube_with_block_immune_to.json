@@ -1,0 +1,100 @@
+{
+  "values": [
+    {
+      "id": "minecraft:arrow",
+      "required": false
+    },
+    {
+      "id": "minecraft:cactus",
+      "required": false
+    },
+    {
+      "id": "minecraft:dry_out",
+      "required": false
+    },
+    {
+      "id": "minecraft:fall",
+      "required": false
+    },
+    {
+      "id": "minecraft:falling_anvil",
+      "required": false
+    },
+    {
+      "id": "minecraft:falling_block",
+      "required": false
+    },
+    {
+      "id": "minecraft:falling_stalactite",
+      "required": false
+    },
+    {
+      "id": "minecraft:freeze",
+      "required": false
+    },
+    {
+      "id": "minecraft:mace_smash",
+      "required": false
+    },
+    {
+      "id": "minecraft:hot_floor",
+      "required": false
+    },
+    {
+      "id": "minecraft:mob_attack",
+      "required": false
+    },
+    {
+      "id": "minecraft:mob_attack_no_aggro",
+      "required": false
+    },
+    {
+      "id": "minecraft:mob_projectile",
+      "required": false
+    },
+    {
+      "id": "minecraft:player_attack",
+      "required": false
+    },
+    {
+      "id": "minecraft:spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:spit",
+      "required": false
+    },
+    {
+      "id": "minecraft:stalagmite",
+      "required": false
+    },
+    {
+      "id": "minecraft:sting",
+      "required": false
+    },
+    {
+      "id": "minecraft:sulfur_cube_hot",
+      "required": false
+    },
+    {
+      "id": "minecraft:sweet_berry_bush",
+      "required": false
+    },
+    {
+      "id": "minecraft:thrown",
+      "required": false
+    },
+    {
+      "id": "minecraft:trident",
+      "required": false
+    },
+    {
+      "id": "minecraft:wind_charge",
+      "required": false
+    },
+    {
+      "id": "#minecraft:is_explosion",
+      "required": false
+    }
+  ]
+}

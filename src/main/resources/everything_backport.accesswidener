@@ -9,3 +9,12 @@ accessible method net/minecraft/world/entity/LivingEntity getHitbox ()Lnet/minec
 
 # 26.1 note block trumpets are built from the package-private instrument type.
 accessible class net/minecraft/world/level/block/state/properties/NoteBlockInstrument$Type
+
+# 26.2 sulfur caves surface rule: a 3D noise threshold condition reads the surface rule context.
+accessible class net/minecraft/world/level/levelgen/SurfaceRules$Context
+accessible class net/minecraft/world/level/levelgen/SurfaceRules$Condition
+accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context randomState Lnet/minecraft/world/level/levelgen/RandomState;
+accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockX I
+accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockY I
+accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockZ I
+accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context lastUpdateY J
