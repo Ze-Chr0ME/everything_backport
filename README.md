@@ -17,7 +17,7 @@ This is a **client + server** mod: every player needs it installed.
 
 | Update | Version | Status |
 |---|---|---|
-| The Copper Age | 1.21.9 | planned |
+| The Copper Age | 1.21.9 | done (no mannequin yet) |
 | Mounts of Mayhem | 1.21.11 | planned |
 | Tiny Takeover | 26.1 | planned |
 | Chaos Cubed | 26.2 | planned |
@@ -41,3 +41,12 @@ This is a **client + server** mod: every player needs it installed.
 ```
 
 The mod jar is written to `build/libs/`.
+
+## Testing
+
+```
+./gradlew runClientGameTest
+```
+
+Starts a client, builds a scene with the backported content, checks the copper golem sorts items, and saves screenshots
+to `build/run/clientGameTest/screenshots`.

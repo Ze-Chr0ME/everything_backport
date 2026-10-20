@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:villager",
+      "required": false
+    },
+    {
+      "id": "#minecraft:accepts_iron_golem_gift",
+      "required": false
+    }
+  ]
+}
