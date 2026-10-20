@@ -81,6 +81,22 @@
       },
       "trigger": "minecraft:location"
     },
+    "minecraft:dappled_forest": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "minecraft:dappled_forest"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "minecraft:cold_ocean": {
       "conditions": {
         "player": [
@@ -1060,6 +1076,9 @@
     ],
     [
       "minecraft:sulfur_caves"
+    ],
+    [
+      "minecraft:dappled_forest"
     ]
   ],
   "rewards": {

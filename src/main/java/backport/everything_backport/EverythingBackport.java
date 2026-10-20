@@ -4,6 +4,7 @@ import backport.everything_backport.chaoscubed.ChaosCubed;
 import backport.everything_backport.copperage.CopperAge;
 import backport.everything_backport.mountsofmayhem.MountsOfMayhem;
 import backport.everything_backport.tinytakeover.TinyTakeover;
+import backport.everything_backport.wildernessbound.WildernessBound;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ public class EverythingBackport implements ModInitializer {
 		MountsOfMayhem.init();
 		TinyTakeover.init();
 		ChaosCubed.init();
+		WildernessBound.init();
     }
 
     /** Backported content keeps its vanilla id so worlds carry over when the pack moves to a newer version. */

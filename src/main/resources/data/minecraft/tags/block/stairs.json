@@ -23,6 +23,14 @@
     {
       "id": "minecraft:sulfur_brick_stairs",
       "required": false
+    },
+    {
+      "id": "#minecraft:wool_stairs",
+      "required": false
+    },
+    {
+      "id": "#minecraft:concrete_stairs",
+      "required": false
     }
   ]
 }

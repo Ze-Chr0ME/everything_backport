@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "minecraft:red_poplar_leaves",
+      "required": false
+    },
+    {
+      "id": "minecraft:orange_poplar_leaves",
+      "required": false
+    },
+    {
+      "id": "minecraft:yellow_poplar_leaves",
+      "required": false
+    }
+  ]
+}

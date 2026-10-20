@@ -47,6 +47,10 @@
     {
       "id": "minecraft:warped_shelf",
       "required": false
+    },
+    {
+      "id": "minecraft:poplar_shelf",
+      "required": false
     }
   ]
 }

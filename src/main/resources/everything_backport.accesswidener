@@ -18,3 +18,7 @@ accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockX 
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockY I
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context blockZ I
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context lastUpdateY J
+
+# 26.3 poplar wood registers its wood and block set types under their vanilla names.
+accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
+accessible method net/minecraft/world/level/block/state/properties/BlockSetType register (Lnet/minecraft/world/level/block/state/properties/BlockSetType;)Lnet/minecraft/world/level/block/state/properties/BlockSetType;
