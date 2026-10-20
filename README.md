@@ -1,27 +1,36 @@
+<div align="center">
+
 # Everything Backport
 
-Fabric mod that backports the content of every Minecraft release after 1.21.7 to **Minecraft 1.21.7**.
+**Every Minecraft update after 1.21.7, playable on 1.21.7.**
 
-Built against the same toolchain as `fabric_skills_mod` so both run in one modpack:
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.7-62B47A)
+![Loader](https://img.shields.io/badge/Fabric_Loader-0.18.1-DBD0B4)
+![Java](https://img.shields.io/badge/Java-21-E76F00)
+[![Release](https://img.shields.io/github/v/release/Ze-Chr0ME/everything_backport)](https://github.com/Ze-Chr0ME/everything_backport/releases/latest)
 
-| | |
-|---|---|
-| Minecraft | 1.21.7 |
-| Fabric Loader | 0.18.1 |
-| Fabric API | 0.129.0+1.21.7 |
-| Java | 21 |
+</div>
 
-This is a **client + server** mod: every player needs it installed.
+## Installation
 
-## Scope
+1. Install [Fabric Loader](https://fabricmc.net/use/) 0.18.1+ for Minecraft 1.21.7.
+2. Add [Fabric API](https://modrinth.com/mod/fabric-api) `0.129.0+1.21.7` to `mods/`.
+3. Download the latest jar from [Releases](https://github.com/Ze-Chr0ME/everything_backport/releases/latest) and put it in `mods/`.
+
+> [!IMPORTANT]
+> **Client + server** mod: the server and every player need it installed.
+
+Built against the same toolchain as `fabric_skills_mod` so both run in one modpack.
+
+## Backported updates
 
 | Update | Version | Status |
 |---|---|---|
-| The Copper Age | 1.21.9 | done (no mannequin yet) |
-| Mounts of Mayhem | 1.21.11 | done |
-| Tiny Takeover | 26.1 | done |
-| Chaos Cubed | 26.2 | done (bed and sign rendering changes not ported) |
-| Wilderness Bound | 26.3 | planned |
+| 🟠 The Copper Age | 1.21.9 | ✅ Done (mannequin not ported) |
+| 🐴 Mounts of Mayhem | 1.21.11 | ✅ Done |
+| 🐣 Tiny Takeover | 26.1 | ✅ Done |
+| 🟡 Chaos Cubed | 26.2 | ✅ Done (bed and sign rendering changes not ported) |
+| 🌲 Wilderness Bound | 26.3 | 🚧 In progress |
 
 ## Design notes
 
