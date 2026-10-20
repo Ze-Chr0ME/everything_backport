@@ -16,4 +16,7 @@ public interface AgeableMobRendererAccessor {
 	@Mutable
 	@Accessor("babyModel")
 	void everythingBackport$setBabyModel(EntityModel<?> model);
+
+	@Accessor("babyModel")
+	EntityModel<?> everythingBackport$getBabyModel();
 }

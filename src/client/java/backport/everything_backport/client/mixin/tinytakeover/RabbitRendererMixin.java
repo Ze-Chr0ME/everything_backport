@@ -1,14 +1,10 @@
 package backport.everything_backport.client.mixin.tinytakeover;
 
+import backport.everything_backport.client.tinytakeover.BabyLayers;
 import backport.everything_backport.client.tinytakeover.model.KeyframeRabbitModel;
 import backport.everything_backport.tinytakeover.TinyAnimationStates;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import java.util.EnumMap;
 import java.util.Map;
-import net.minecraft.client.model.RabbitModel;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.RabbitRenderer;
 import net.minecraft.client.renderer.entity.state.RabbitRenderState;
@@ -40,17 +36,12 @@ public abstract class RabbitRendererMixin {
 		return ResourceLocation.withDefaultNamespace("textures/entity/rabbit/rabbit_" + name + (baby ? "_baby" : "") + ".png");
 	}
 
-	/** Neither 1.21.7 rabbit model fits the 26.1 meshes, so none is made; the real ones are set below. */
-	@WrapOperation(method = "<init>", at = @At(value = "NEW", target = "Lnet/minecraft/client/model/RabbitModel;<init>(Lnet/minecraft/client/model/geom/ModelPart;)V"))
-	private static RabbitModel everythingBackport$skipOldModels(ModelPart root, Operation<RabbitModel> original) {
-		return null;
-	}
-
+	/** Neither 1.21.7 rabbit model fits the 26.1 meshes, so those meshes have their own layers and replace both models here. */
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void everythingBackport$keyframeModels(EntityRendererProvider.Context context, CallbackInfo ci) {
-		KeyframeRabbitModel adult = KeyframeRabbitModel.adult(context.bakeLayer(ModelLayers.RABBIT));
+		KeyframeRabbitModel adult = KeyframeRabbitModel.adult(context.bakeLayer(BabyLayers.RABBIT));
 		((AgeableMobRendererAccessor)this).everythingBackport$setAdultModel(adult);
-		((AgeableMobRendererAccessor)this).everythingBackport$setBabyModel(KeyframeRabbitModel.baby(context.bakeLayer(ModelLayers.RABBIT_BABY)));
+		((AgeableMobRendererAccessor)this).everythingBackport$setBabyModel(KeyframeRabbitModel.baby(context.bakeLayer(BabyLayers.RABBIT_BABY)));
 		((LivingEntityRendererAccessor)this).everythingBackport$setModel(adult);
 	}
 

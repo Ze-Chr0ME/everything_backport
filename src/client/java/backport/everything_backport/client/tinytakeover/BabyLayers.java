@@ -16,6 +16,11 @@ public final class BabyLayers {
 	/** Per-slot baby armor (head, chest, legs, feet) for piglins and zombified piglins. */
 	public static final ModelLayerLocation[] PIGLIN_BABY_ARMOR = armor("piglin_baby");
 
+	/** The 26.1 meshes 1.21.7's own models can't be built on get layers of their own; the renderers swap in the new models. */
+	public static final ModelLayerLocation AXOLOTL_BABY = layer("axolotl_baby", "main");
+	public static final ModelLayerLocation RABBIT = layer("rabbit", "main");
+	public static final ModelLayerLocation RABBIT_BABY = layer("rabbit_baby", "main");
+
 	private static final CubeDeformation BABY_OUTER_ARMOR_DEFORMATION = new CubeDeformation(-0.1F, 0.5F, 0.3F);
 	private static final CubeDeformation BABY_INNER_ARMOR_DEFORMATION = new CubeDeformation(-0.1F, 0.3F, 0.3F);
 	private static final CubeDeformation BABY_PIGLIN_ARMOR_DEFORMATION = new CubeDeformation(0.7F);
@@ -35,7 +40,7 @@ public final class BabyLayers {
 	/** Replaces and adds layer definitions in the map {@code LayerDefinitions.createRoots} builds. */
 	public static void apply(Map<ModelLayerLocation, LayerDefinition> roots) {
 		roots.put(ModelLayers.ARMADILLO_BABY, BabyMeshes.armadillo());
-		roots.put(ModelLayers.AXOLOTL_BABY, BabyMeshes.axolotl());
+		roots.put(AXOLOTL_BABY, BabyMeshes.axolotl());
 		roots.put(ModelLayers.BEE_BABY, BabyMeshes.bee());
 		roots.put(ModelLayers.CAMEL_BABY, BabyMeshes.camel());
 		LayerDefinition feline = BabyMeshes.feline();
@@ -83,8 +88,8 @@ public final class BabyLayers {
 		roots.put(ModelLayers.PIGLIN_BABY, piglin);
 		roots.put(ModelLayers.ZOMBIFIED_PIGLIN_BABY, piglin);
 		roots.put(ModelLayers.POLAR_BEAR_BABY, BabyMeshes.polarBear());
-		roots.put(ModelLayers.RABBIT, BabyMeshes.adultRabbit());
-		roots.put(ModelLayers.RABBIT_BABY, BabyMeshes.babyRabbit());
+		roots.put(RABBIT, BabyMeshes.adultRabbit());
+		roots.put(RABBIT_BABY, BabyMeshes.babyRabbit());
 		LayerDefinition sheep = BabyMeshes.sheep();
 		roots.put(ModelLayers.SHEEP_BABY, sheep);
 		roots.put(ModelLayers.SHEEP_BABY_WOOL, sheep);
