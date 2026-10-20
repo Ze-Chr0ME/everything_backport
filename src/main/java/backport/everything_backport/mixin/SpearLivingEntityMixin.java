@@ -3,24 +3,34 @@ package backport.everything_backport.mixin;
 import backport.everything_backport.mountsofmayhem.MountsComponents;
 import backport.everything_backport.mountsofmayhem.SpearCombat;
 import backport.everything_backport.mountsofmayhem.component.KineticWeapon;
+import backport.everything_backport.mountsofmayhem.component.SwingAnimation;
+import backport.everything_backport.mountsofmayhem.component.UseEffects;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import java.util.function.Predicate;
+import net.minecraft.core.Holder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Remembers what a charged spear already hit and plays the hit feedback (1.21.11). */
+/**
+ * Remembers what a charged spear already hit and plays the hit feedback, takes the swing duration from the held item
+ * and skips sculk vibrations for items that opt out of them (1.21.11).
+ */
 @Mixin(LivingEntity.class)
 public abstract class SpearLivingEntityMixin extends Entity implements SpearCombat.StabTracker {
 	@Unique
@@ -96,4 +106,18 @@ public abstract class SpearLivingEntityMixin extends Entity implements SpearComb
 		}
 	}
 
+	@ModifyConstant(method = "getCurrentSwingDuration", constant = @Constant(intValue = 6))
+	private int everythingBackport$itemSwingDuration(int duration) {
+		SwingAnimation swingAnimation = ((LivingEntity)(Object)this).getMainHandItem().get(MountsComponents.SWING_ANIMATION);
+		return swingAnimation != null ? swingAnimation.duration() : duration;
+	}
+
+	@WrapWithCondition(
+		method = {"startUsingItem", "stopUsingItem"},
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;gameEvent(Lnet/minecraft/core/Holder;)V")
+	)
+	private boolean everythingBackport$useVibrations(LivingEntity livingEntity, Holder<GameEvent> gameEvent) {
+		UseEffects useEffects = this.useItem.get(MountsComponents.USE_EFFECTS);
+		return useEffects == null || useEffects.interactVibrations();
+	}
 }
