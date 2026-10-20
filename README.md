@@ -30,7 +30,7 @@ Built against the same toolchain as `fabric_skills_mod` so both run in one modpa
 | 🐴 Mounts of Mayhem | 1.21.11 | ✅ Done |
 | 🐣 Tiny Takeover | 26.1 | ✅ Done |
 | 🟡 Chaos Cubed | 26.2 | ✅ Done (bed and sign rendering changes not ported) |
-| 🌲 Wilderness Bound | 26.3 | 🚧 In progress |
+| 🌲 Wilderness Bound | 26.3 | ✅ Done |
 
 ## Design notes
 
