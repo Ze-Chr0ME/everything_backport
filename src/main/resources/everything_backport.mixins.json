@@ -77,10 +77,13 @@
 		"tinytakeover.TraderLlamaAgeLockMixin",
 		"tinytakeover.WolfBabySoundMixin",
 		"wildernessbound.CartographyTableMenuMixin",
+		"wildernessbound.EnderManTeleportMixin",
 		"wildernessbound.ExplorationMapFunctionMixin",
 		"wildernessbound.LivingEntityStrawBedMixin",
 		"wildernessbound.MultiNoiseBiomeSourceDappledForestMixin",
 		"wildernessbound.ServerPlayerStrawBedMixin",
+		"wildernessbound.ShieldBeforeTillingMixin",
+		"wildernessbound.ShulkerTeleportMixin",
 		"wildernessbound.TreasureMapForEmeraldsMixin"
 	],
 	"injectors": {

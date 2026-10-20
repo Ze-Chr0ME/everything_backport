@@ -247,9 +247,12 @@ public class Cushion extends BlockAttachedEntity {
 		output.store("color", DyeColor.CODEC, this.getColor());
 	}
 
+	/**
+	 * A cushion's block position always follows its position ({@link #setPos}), so the stored {@code block_pos} isn't read back. It
+	 * is stale in cushions placed from structure templates, where 1.21.7 would log it as invalid.
+	 */
 	@Override
 	protected void readAdditionalSaveData(ValueInput input) {
-		super.readAdditionalSaveData(input);
 		this.setColor(input.read("color", DyeColor.CODEC).orElse(DEFAULT_COLOR));
 	}
 
