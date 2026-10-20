@@ -6,12 +6,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Player.class)
 public interface PlayerAccessor {
-	@Accessor("attackStrengthTicker")
-	int everythingBackport$getAttackStrengthTicker();
-
-	@Accessor("attackStrengthTicker")
-	void everythingBackport$setAttackStrengthTicker(int ticks);
-
 	@Accessor("currentImpulseContextResetGraceTime")
 	int everythingBackport$getImpulseGraceTime();
 

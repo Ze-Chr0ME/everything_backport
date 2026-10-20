@@ -23,6 +23,7 @@
 		"LivingEntityInvoker",
 		"MeleeAttackMixin",
 		"MobEquipmentMixin",
+		"MobInvoker",
 		"NautilusRidingStatMixin",
 		"OfferFlowerGoalMixin",
 		"ParrotAccessor",

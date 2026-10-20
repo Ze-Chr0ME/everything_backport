@@ -1,7 +1,7 @@
 package backport.everything_backport.mountsofmayhem;
 
 import backport.everything_backport.mixin.LivingEntityInvoker;
-import backport.everything_backport.mixin.PlayerAccessor;
+import backport.everything_backport.mixin.MobInvoker;
 import backport.everything_backport.mountsofmayhem.component.AttackRange;
 import backport.everything_backport.mountsofmayhem.enchantment.MountsEnchantments;
 import com.mojang.datafixers.util.Either;
@@ -21,6 +21,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -185,7 +186,10 @@ public final class SpearCombat {
 				return false;
 			} else {
 				attacker.setLastHurtMob(entity);
-				((LivingEntityInvoker)attacker).everythingBackport$playAttackSound();
+				// 1.21.11 moved playAttackSound up to LivingEntity; in 1.21.7 only mobs have one.
+				if (attacker instanceof Mob mob) {
+					((MobInvoker)mob).everythingBackport$playAttackSound();
+				}
 				return true;
 			}
 		}
@@ -200,7 +204,7 @@ public final class SpearCombat {
 
 	public static void onAttack(LivingEntity attacker) {
 		if (attacker instanceof Player player) {
-			((PlayerAccessor)player).everythingBackport$setAttackStrengthTicker(0);
+			((LivingEntityInvoker)player).everythingBackport$setAttackStrengthTicker(0);
 		}
 	}
 
@@ -213,7 +217,7 @@ public final class SpearCombat {
 	/** 1.21.11's {@code Player#cannotAttackWithItem}: the attack charge needed by {@code minimum_attack_charge}. */
 	public static boolean cannotAttackWithItem(Player player, ItemStack itemStack, int ticks) {
 		float minimum = itemStack.getOrDefault(MountsComponents.MINIMUM_ATTACK_CHARGE, 0.0F);
-		float charge = (((PlayerAccessor)player).everythingBackport$getAttackStrengthTicker() + ticks) / player.getCurrentItemAttackStrengthDelay();
+		float charge = (((LivingEntityInvoker)player).everythingBackport$getAttackStrengthTicker() + ticks) / player.getCurrentItemAttackStrengthDelay();
 		return minimum > 0.0F && charge < minimum;
 	}
 
