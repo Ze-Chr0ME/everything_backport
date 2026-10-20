@@ -15,9 +15,12 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.NoteBlock;
@@ -62,7 +65,9 @@ public class TinyTakeoverClientTest implements FabricClientGameTest {
 			singleplayer.getClientWorld().waitForChunksRender();
 			server.runCommand("gamerule doDaylightCycle false");
 			server.runCommand("gamerule doMobSpawning false");
-			server.runCommand("time set noon");
+			// Night with night vision: baby zombies burn in daylight.
+			server.runCommand("time set midnight");
+			server.runCommand("effect give @a night_vision infinite 0 true");
 			server.runCommand("gamemode creative @a");
 
 			for (int g = 0; g < GROUPS.length; g++) {
@@ -72,28 +77,39 @@ public class TinyTakeoverClientTest implements FabricClientGameTest {
 					double x = baseX + (i % 7) * 2.0 - 6.0;
 					double z = 4 + (i / 7) * 3.5;
 					String nbt = "NoAI:1b,Silent:1b,PersistenceRequired:1b,Rotation:[200f,0f]" + (group[i][1].isEmpty() ? "" : "," + group[i][1]);
-					server.runCommand("summon " + group[i][0] + " " + x + " -60 " + z + " {" + nbt + "}");
+					server.runCommand("summon " + group[i][0] + " " + x + " -60 " + z + " {" + nbt + ",Tags:[\"tiny_baby\"]}");
 				}
+
+				// An adult for scale.
+				server.runCommand("summon cow " + (baseX + 9.0) + " -60 4 {NoAI:1b,Silent:1b,Rotation:[200f,0f]}");
 			}
 
-			server.runCommand("setblock 120 -60 4 golden_dandelion");
-			server.runCommand("setblock 121 -60 4 potted_golden_dandelion");
-			server.runCommand("setblock 119 -60 4 dandelion");
 			server.runCommand("item replace entity @p hotbar.0 with golden_dandelion");
 
 			for (int g = 0; g < GROUPS.length; g++) {
-				server.runCommand("tp @p " + (g * 40 + 0.5) + " -57.5 -5 0 22");
+				server.runCommand("tp @p " + (g * 40 + 1.5) + " -58 -2.5 0 22");
 				context.waitTicks(30);
 				singleplayer.getClientWorld().waitForChunksRender();
 				context.takeScreenshot("tiny_takeover_babies_" + (g + 1));
 			}
 
-			server.runCommand("tp @p 120.5 -59 1.5 0 35");
-			context.waitTicks(30);
+			// Close-up of the armored babies.
+			server.runCommand("tp @p 121.5 -59.5 0.5 0 15");
+			context.waitTicks(10);
+			singleplayer.getClientWorld().waitForChunksRender();
+			context.takeScreenshot("tiny_takeover_baby_armor");
+
+			server.runCommand("tp @p 160.5 -59 1.5 0 35");
+			context.waitTicks(20);
+			server.runCommand("setblock 160 -60 4 golden_dandelion");
+			server.runCommand("setblock 161 -60 4 potted_golden_dandelion");
+			server.runCommand("setblock 159 -60 4 dandelion");
+			context.waitTicks(10);
 			singleplayer.getClientWorld().waitForChunksRender();
 			context.takeScreenshot("tiny_takeover_golden_dandelion");
 
 			List<String> failures = new ArrayList<>();
+			failures.addAll(server.computeOnServer(TinyTakeoverClientTest::checkBabies));
 			failures.addAll(server.computeOnServer(TinyTakeoverClientTest::checkAgeLock));
 			failures.addAll(server.computeOnServer(TinyTakeoverClientTest::checkHitboxes));
 			failures.addAll(server.computeOnServer(TinyTakeoverClientTest::checkSoundVariants));
@@ -107,13 +123,25 @@ public class TinyTakeoverClientTest implements FabricClientGameTest {
 		}
 	}
 
+	/** Every mob summoned as a baby (except the adult rabbit, zombie and armor stand in the groups) is a baby. */
+	private static List<String> checkBabies(MinecraftServer server) {
+		List<String> failures = new ArrayList<>();
+		for (Entity entity : server.overworld().getAllEntities()) {
+			if (entity.getTags().contains("tiny_baby") && entity instanceof Mob mob && !mob.isBaby() && !(entity instanceof Rabbit) && entity.getType() != EntityType.ZOMBIE) {
+				failures.add(EntityType.getKey(entity.getType()) + " is not a baby");
+			}
+		}
+
+		return failures;
+	}
+
 	/** A golden dandelion stops a calf from growing and is used up; a second use (after the cooldown) unlocks it. */
 	private static List<String> checkAgeLock(MinecraftServer server) {
 		List<String> failures = new ArrayList<>();
 		ServerLevel level = server.overworld();
 		ServerPlayer player = level.players().getFirst();
 		Cow calf = EntityType.COW.create(level, EntitySpawnReason.COMMAND);
-		calf.snapTo(120.5, -60.0, 6.5, 180.0F, 0.0F);
+		calf.snapTo(160.5, -60.0, 6.5, 180.0F, 0.0F);
 		calf.setAge(-24000);
 		calf.setNoAi(true);
 		level.addFreshEntity(calf);
