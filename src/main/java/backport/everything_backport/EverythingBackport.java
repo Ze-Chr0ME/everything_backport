@@ -1,5 +1,6 @@
 package backport.everything_backport;
 
+import backport.everything_backport.chaoscubed.ChaosCubed;
 import backport.everything_backport.copperage.CopperAge;
 import backport.everything_backport.mountsofmayhem.MountsOfMayhem;
 import backport.everything_backport.tinytakeover.TinyTakeover;
@@ -18,6 +19,7 @@ public class EverythingBackport implements ModInitializer {
 		CopperAge.init();
 		MountsOfMayhem.init();
 		TinyTakeover.init();
+		ChaosCubed.init();
     }
 
     /** Backported content keeps its vanilla id so worlds carry over when the pack moves to a newer version. */

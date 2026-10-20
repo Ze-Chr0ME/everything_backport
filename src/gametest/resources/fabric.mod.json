@@ -8,7 +8,8 @@
 		"fabric-client-gametest": [
 			"backport.everything_backport.test.CopperAgeClientTest",
 			"backport.everything_backport.test.MountsOfMayhemClientTest",
-			"backport.everything_backport.test.TinyTakeoverClientTest"
+			"backport.everything_backport.test.TinyTakeoverClientTest",
+			"backport.everything_backport.test.ChaosCubedClientTest"
 		]
 	},
 	"depends": {
