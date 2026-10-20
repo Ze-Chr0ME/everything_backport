@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "everything_backport",
+	"version": "${version}",
+	"name": "Everything Backport",
+	"description": "Backports the blocks, items, mobs and features of Minecraft 1.21.9 to 26.3 to 1.21.7.",
+	"authors": [
+		"Ze-Chr0ME"
+	],
+	"contact": {
+		"sources": "https://github.com/Ze-Chr0ME/everything_backport"
+	},
+	"license": "All-Rights-Reserved",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"backport.everything_backport.EverythingBackport"
+		],
+		"client": [
+			"backport.everything_backport.EverythingBackportClient"
+		]
+	},
+	"mixins": [
+		"everything_backport.mixins.json",
+		{
+			"config": "everything_backport.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "~1.21.7",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
