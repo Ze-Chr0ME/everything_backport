@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "everything_backport_test",
+	"version": "1.0.0",
+	"name": "Everything Backport Tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"backport.everything_backport.test.CopperAgeClientTest"
+		]
+	},
+	"depends": {
+		"everything_backport": "*"
+	}
+}

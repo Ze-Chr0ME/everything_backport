@@ -15,6 +15,7 @@ repositories {
 
 loom {
 	splitEnvironmentSourceSets()
+	accessWidenerPath = file("src/main/resources/everything_backport.accesswidener")
 
 	mods {
 		"everything_backport" {
@@ -24,6 +25,18 @@ loom {
 	}
 }
 
+
+fabricApi {
+	// Client game tests start a real client, build a test scene and save screenshots to build/run/clientGameTest/screenshots.
+	// Run with: ./gradlew runClientGameTest
+	configureTests {
+		createSourceSet = true
+		modId = "everything_backport_test"
+		enableGameTests = false
+		enableClientGameTests = true
+		eula = true
+	}
+}
 
 dependencies {
 	// To change the versions see the gradle.properties file

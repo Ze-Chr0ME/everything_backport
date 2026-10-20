@@ -1,0 +1,146 @@
+package backport.everything_backport.mountsofmayhem.entity;
+
+import backport.everything_backport.mountsofmayhem.MountsComponents;
+import backport.everything_backport.mountsofmayhem.MountsEntities;
+import backport.everything_backport.mountsofmayhem.MountsMemories;
+import backport.everything_backport.mountsofmayhem.MountsRegistries;
+import backport.everything_backport.mountsofmayhem.MountsSounds;
+import backport.everything_backport.mountsofmayhem.MountsTags;
+import backport.everything_backport.mountsofmayhem.SpearCombat;
+import com.mojang.serialization.Dynamic;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.profiling.Profiler;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+public class Nautilus extends AbstractNautilus {
+	private static final int NAUTILUS_TOTAL_AIR_SUPPLY = 300;
+
+	public Nautilus(EntityType<? extends Nautilus> entityType, Level level) {
+		super(entityType, level);
+	}
+
+	@Override
+	protected Brain.Provider<Nautilus> brainProvider() {
+		return NautilusAi.brainProvider();
+	}
+
+	@Override
+	protected Brain<?> makeBrain(Dynamic<?> dynamic) {
+		return NautilusAi.makeBrain(this.brainProvider().makeBrain(dynamic));
+	}
+
+	@Override
+	public Brain<Nautilus> getBrain() {
+		return (Brain<Nautilus>)super.getBrain();
+	}
+
+	@Nullable
+	public Nautilus getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+		Nautilus nautilus = MountsEntities.NAUTILUS.create(serverLevel, EntitySpawnReason.BREEDING);
+		if (nautilus != null && this.isTame()) {
+			nautilus.setOwnerReference(this.getOwnerReference());
+			nautilus.setTame(true, true);
+		}
+
+		return nautilus;
+	}
+
+	@Override
+	protected void customServerAiStep(ServerLevel serverLevel) {
+		ProfilerFiller profilerFiller = Profiler.get();
+		profilerFiller.push("nautilusBrain");
+		this.getBrain().tick(serverLevel, this);
+		profilerFiller.pop();
+		profilerFiller.push("nautilusActivityUpdate");
+		NautilusAi.updateActivity(this);
+		profilerFiller.pop();
+		super.customServerAiStep(serverLevel);
+	}
+
+	@Override
+	protected SoundEvent getAmbientSound() {
+		if (this.isBaby()) {
+			return this.isUnderWater() ? MountsSounds.BABY_NAUTILUS_AMBIENT : MountsSounds.BABY_NAUTILUS_AMBIENT_ON_LAND;
+		} else {
+			return this.isUnderWater() ? MountsSounds.NAUTILUS_AMBIENT : MountsSounds.NAUTILUS_AMBIENT_ON_LAND;
+		}
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		if (this.isBaby()) {
+			return this.isUnderWater() ? MountsSounds.BABY_NAUTILUS_HURT : MountsSounds.BABY_NAUTILUS_HURT_ON_LAND;
+		} else {
+			return this.isUnderWater() ? MountsSounds.NAUTILUS_HURT : MountsSounds.NAUTILUS_HURT_ON_LAND;
+		}
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		if (this.isBaby()) {
+			return this.isUnderWater() ? MountsSounds.BABY_NAUTILUS_DEATH : MountsSounds.BABY_NAUTILUS_DEATH_ON_LAND;
+		} else {
+			return this.isUnderWater() ? MountsSounds.NAUTILUS_DEATH : MountsSounds.NAUTILUS_DEATH_ON_LAND;
+		}
+	}
+
+	@Override
+	protected SoundEvent getDashSound() {
+		return this.isUnderWater() ? MountsSounds.NAUTILUS_DASH : MountsSounds.NAUTILUS_DASH_ON_LAND;
+	}
+
+	@Override
+	protected SoundEvent getDashReadySound() {
+		return this.isUnderWater() ? MountsSounds.NAUTILUS_DASH_READY : MountsSounds.NAUTILUS_DASH_READY_ON_LAND;
+	}
+
+	@Override
+	protected void playEatingSound() {
+		SoundEvent soundEvent = this.isBaby() ? MountsSounds.BABY_NAUTILUS_EAT : MountsSounds.NAUTILUS_EAT;
+		this.makeSound(soundEvent);
+	}
+
+	@Override
+	protected SoundEvent getSwimSound() {
+		return this.isBaby() ? MountsSounds.BABY_NAUTILUS_SWIM : MountsSounds.NAUTILUS_SWIM;
+	}
+
+	@Override
+	public int getMaxAirSupply() {
+		return 300;
+	}
+
+	protected void handleAirSupply(ServerLevel serverLevel, int i) {
+		if (this.isAlive() && !this.isInWater()) {
+			this.setAirSupply(i - 1);
+			if (this.getAirSupply() <= -20) {
+				this.setAirSupply(0);
+				this.hurtServer(serverLevel, this.damageSources().dryOut(), 2.0F);
+			}
+		} else {
+			this.setAirSupply(300);
+		}
+	}
+
+	@Override
+	public void baseTick() {
+		int i = this.getAirSupply();
+		super.baseTick();
+		if (!this.isNoAi() && this.level() instanceof ServerLevel serverLevel) {
+			this.handleAirSupply(serverLevel, i);
+		}
+	}
+
+	@Override
+	public boolean canBeLeashed() {
+		return !this.isAggravated();
+	}
+}

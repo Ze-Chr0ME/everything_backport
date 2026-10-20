@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#minecraft:copper_chests",
+      "required": false
+    },
+    {
+      "id": "#minecraft:lightning_rods",
+      "required": false
+    }
+  ]
+}
