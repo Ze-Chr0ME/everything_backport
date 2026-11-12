@@ -1,75 +1,76 @@
-<div align="center">
-
 # Everything Backport
 
-**Every Minecraft update after 1.21.7, playable on 1.21.7.**
+A Fabric mod that brings newer Minecraft content to **1.21.7**: copper golems, nautiluses, redesigned baby mobs, sulfur caves and poplar forests.
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.21.7-62B47A)
-![Loader](https://img.shields.io/badge/Fabric_Loader-0.18.1-DBD0B4)
-![Java](https://img.shields.io/badge/Java-21-E76F00)
-[![Release](https://img.shields.io/github/v/release/Ze-Chr0ME/everything_backport)](https://github.com/Ze-Chr0ME/everything_backport/releases/latest)
+![Copper golems and the Copper Age blocks in Minecraft 1.21.7](docs/screenshots/copper-age.png)
 
-</div>
+## What's included
 
-## Installation
+| Backport | Content |
+| --- | --- |
+| The Copper Age (1.21.9) | Copper golems and chests, shelves, copper tools and armor, lanterns, torches, bars and chains. |
+| Mounts of Mayhem (1.21.11) | Spears and Lunge, nautiluses and their equipment, camel husks and new jockeys. |
+| Tiny Takeover (26.1) | Redesigned baby mobs, golden dandelions that pause aging, sound variants and the trumpet. |
+| Chaos Cubed (26.2) | Sulfur cubes, sulfur caves, cinnabar and sulfur building blocks, spikes and geysers. |
+| Wilderness Bound (26.3) | Poplar trees and wood, dappled forests, abandoned camps, cushions, straw beds and shelf mushrooms. |
 
-1. Install [Fabric Loader](https://fabricmc.net/use/) 0.18.1+ for Minecraft 1.21.7.
-2. Add [Fabric API](https://modrinth.com/mod/fabric-api) `0.129.0+1.21.7` to `mods/`.
-3. Download the latest jar from [Releases](https://github.com/Ze-Chr0ME/everything_backport/releases/latest) and put it in `mods/`.
+The mannequin is not ported. Chaos Cubed's changes to bed and sign rendering are also not included.
 
-> [!IMPORTANT]
-> **Client + server** mod: the server and every player need it installed.
+## Install
 
-Built against the same toolchain as `fabric_skills_mod` so both run in one modpack.
+You need **Minecraft 1.21.7**, **Java 21**, Fabric Loader and Fabric API. The development setup uses Loader **0.18.1** and Fabric API **0.129.0+1.21.7**.
 
-## Backported updates
+1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for Minecraft 1.21.7.
+2. Put [Fabric API](https://modrinth.com/mod/fabric-api/versions?g=1.21.7) for 1.21.7 in your `mods` folder.
+3. Add the Everything Backport jar from [Releases](https://github.com/Ze-Chr0ME/everything_backport/releases).
 
-| Update | Version | Status |
-|---|---|---|
-| 🟠 The Copper Age | 1.21.9 | ✅ Done (mannequin not ported) |
-| 🐴 Mounts of Mayhem | 1.21.11 | ✅ Done |
-| 🐣 Tiny Takeover | 26.1 | ✅ Done |
-| 🟡 Chaos Cubed | 26.2 | ✅ Done (bed and sign rendering changes not ported) |
-| 🌲 Wilderness Bound | 26.3 | ✅ Done |
+Install the mod and Fabric API on **both the server and every player's client**. For singleplayer, install them in your client.
 
-## Design notes
+## Screenshots
 
-- **Vanilla ids.** Backported blocks, items and entities are registered under the `minecraft` namespace
-  with the same ids and block state properties as the real release, so a world can later be opened in the
-  newer vanilla version without losing them.
-- **World generation.** The target server runs TerraTonic (Terralith + Tectonic). New biomes are added
-  alongside the existing noise settings rather than replacing them, and new structures only spawn in newly
-  generated chunks.
-- **Newer formats.** Where a 1.21.11 data or asset format can't be read by 1.21.7, the ported file is adapted:
-  equipment layers 1.21.7 doesn't know (nautilus armor and saddles, the camel husk saddle) are rendered by the
-  mod from `textures/entity/equipment/<layer>/`, and the Lunge enchantment uses two small helpers
-  (`everything_backport:entity_flags`, `everything_backport:play_level_sound`) in place of fields 1.21.7 lacks.
-- **Sulfur caves.** 26.2 places sulfur caves in the overworld climate space. The mod keeps the world's own biome source and
-  noise settings (vanilla's, or Terralith's under TerraTonic): where the climate matches 26.2's sulfur caves entry, the biome
-  the source picked gives way to sulfur caves unless it is another underground biome (lush caves, dripstone caves, deep dark
-  or anything tagged `c:is_underground`), and the sulfur and cinnabar surface rule runs in front of the world's own rule.
-- **Physics attributes.** 26.2's `bounciness`, `friction_modifier` and `air_drag_modifier` attributes are added to every
-  living entity; entities without a bounciness keep 1.21.7's collision handling.
-- **Babies.** 26.1's redesigned baby models replace the scaled-down adults 1.21.7 bakes for its baby model layers.
-  As in 26.1, baby zombies and piglins only show armor made of vanilla materials (it uses the `humanoid_baby`
-  textures) and never show trims.
-- **Assets.** Textures, models and sounds come from the vanilla release they belong to and remain the
-  property of Mojang Studios.
+Captured in the mod's client game-test worlds on Minecraft 1.21.7.
 
-## Building
+![Nautiluses and other Mounts of Mayhem mobs](docs/screenshots/mounts-of-mayhem.png)
+*Mounts of Mayhem.*
 
-```
+![Redesigned baby animals from Tiny Takeover](docs/screenshots/tiny-takeover.png)
+*Tiny Takeover.*
+
+![Sulfur cubes holding different blocks](docs/screenshots/chaos-cubed.png)
+*Chaos Cubed.*
+
+![Poplar trees in a generated dappled forest](docs/screenshots/wilderness-bound.png)
+*Wilderness Bound.*
+
+## Worlds and compatibility
+
+Backported content uses vanilla `minecraft:` IDs and block-state properties. This is intended to let the content carry over when a world moves to a newer Minecraft version; keep a backup before upgrading.
+
+World generation is designed to work alongside TerraTonic (Terralith + Tectonic), keeping the world's biome source and noise settings. New structures appear in newly generated chunks. Sulfur caves replace matching climate regions while preserving other underground biomes, including those tagged `c:is_underground`.
+
+The mod shares its Minecraft, Loader and Fabric API versions with `fabric_skills_mod` for use in the same modpack.
+
+## Build and run
+
+With JDK 21 installed:
+
+```sh
 ./gradlew build
+./gradlew runClient
 ```
 
-The mod jar is written to `build/libs/`.
+On Windows, use `gradlew.bat` in place of `./gradlew`. The built mod is `build/libs/everything_backport-0.2.0.jar`; the `-sources.jar` is for development.
 
-## Testing
+### Client game tests
 
-```
+```sh
 ./gradlew runClientGameTest
 ```
 
-Starts a client, builds scenes with the backported content, runs checks for each update (the copper golem sorting items,
-the age lock, sulfur cube archetypes, geysers, sulfur caves in a generated world, and more), and saves screenshots
-to `build/run/clientGameTest/screenshots`.
+This launches a real Minecraft client. The active test is selected by the `fabric-client-gametest` entrypoint in [the test manifest](src/gametest/resources/fabric.mod.json), currently Wilderness Bound. Test classes for all five backports live in [src/gametest](src/gametest/java/backport/everything_backport/test); they build scenes and check behavior such as copper golem sorting, spear attacks, age locking and world generation.
+
+Screenshots are saved to `build/run/clientGameTest/screenshots/`.
+
+## Credits
+
+Vanilla textures, models and sounds belong to Mojang Studios. This is an unofficial project, not affiliated with Mojang or Microsoft.
